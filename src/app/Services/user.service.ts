@@ -17,4 +17,8 @@ export class UserService {
   public login(data) {
     return this.http.post(`${this.baseURL}/login`, data);
   }
+
+  public sendPasswordResetLink(data) {
+    return this.http.post(`${this.baseURL}/send-password-reset-link`, data);
+  }
 }
