@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../Services/user.service';
 import {TokenService} from '../../Services/token.service';
 import {Router} from '@angular/router';
+import {AuthService} from "../../Services/auth.service";
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private User: UserService,
     private Token: TokenService,
-    private router: Router
+    private router: Router,
+    private Auth: AuthService
   ) { }
 
   onSubmit() {
@@ -34,6 +36,7 @@ export class SignupComponent implements OnInit {
 
   handleResponse(data) {
     this.Token.handle(data.token);
+    this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('/profile');
   }
 
